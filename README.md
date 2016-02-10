@@ -1,11 +1,12 @@
-# Docker runnable PHP Application
+# Docker runnable PHP Application with HAProxy
 
-Usable with docker-machine. Based on the Heroku PHP Docker image. Scalable and
-backed by HAProxy.
+Usable with docker-machine. Based on the Heroku PHP Docker image.
+Load balanced by HAProxy.
 
 **Note:**<br>
-Due to the changes to links and networks, the haproxy currently needs to be removed
-and recreated for link-changes (f.e. scale events) to be picked up.
+Due to the changes to links and networks in Docker 1.6 and docker-compose,
+the haproxy currently needs to be removed and recreated for link-changes
+(f.e. scale events) to be picked up.
 
 ## Deployment
 
@@ -16,7 +17,7 @@ and recreated for link-changes (f.e. scale events) to be picked up.
 4. Deploy the app with `docker-compose up -d lb web`
 5. Check the IP of the docker machine on port 80. It should show a nice `phpinfo` page
 6. Check the IP of the docker machine on port 1936. Authenticate with `auth`/`auth`,
-   you should see the haproxy page with one backend
+   you should see the haproxy stats page with one backend
 7. Scale your app `docker-compose scale web=3`
 8. Reload HAProxy by stopping, removing and restarting the container
    ```
@@ -27,6 +28,7 @@ and recreated for link-changes (f.e. scale events) to be picked up.
    # Bring the balancer back up
    docker-compose up --no-deps -d lb web
    ```
+9. Reload the haproxy stats page. You can see 3 backends now.
 
 ## License
 
