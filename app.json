@@ -1,0 +1,5 @@
+{
+  "name": "docker-machine-php",
+  "image": "heroku/php",
+  "addons": []
+}

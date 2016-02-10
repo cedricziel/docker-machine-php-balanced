@@ -1,0 +1,13 @@
+{
+    "name": "cedricziel/docker-machine-php",
+    "require": {
+        "heroku/heroku-buildpack-php": "^92.0"
+    },
+    "authors": [
+        {
+            "name": "Cedric Ziel",
+            "email": "cedric@cedric-ziel.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}

@@ -1,0 +1,30 @@
+lb:
+  image: tutum/haproxy:latest
+  ports:
+    - '80:80'
+    - '1936:1936'
+  environment:
+    - STATS_AUTH=auth:auth
+    - STATS_PORT=1936
+  links:
+    - "web:web"
+  restart: "always"
+web:
+  build: .
+  command: 'bash -c ''vendor/bin/heroku-php-nginx web/'''
+  working_dir: /app/user
+  environment:
+    PORT: 8080
+  expose:
+    - 8080
+  restart: "always"
+shell:
+  build: .
+  command: bash
+  working_dir: /app/user
+  environment:
+    PORT: 8080
+  ports:
+    - '8080:8080'
+  volumes:
+    - '.:/app/user'
